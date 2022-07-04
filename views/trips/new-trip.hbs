@@ -1,0 +1,65 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <h1>Create new trip!</h1>
+
+            <hr>
+
+            <form action="/trips/create" method="POST">
+
+                <label for="origin" class="form-label">What is the origin of the trip?</label>
+                <input type="text" class="form-control" id="origin" name="origin" aria-describedby="emailHelp">
+                <label for="exampleInputEmail1" class="form-label">Latitud</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="latitude"
+                    aria-describedby="emailHelp">
+                <label for="destination" class="form-label">What is the destination of the trip?</label>
+                <input type="text" class="form-control" id="destination" name="destination"
+                    aria-describedby="emailHelp">
+                <label for="exampleInputEmail1" class="form-label">Longitude</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="longitude"
+                    aria-describedby="emailHelp">
+
+
+                <div class="mb-3">
+                    <label for="date" class="form-label">
+                        Select the day of your trip</label>
+                    <input type="date" class="form-control" id="date" name="date">
+                    <div class="form-text">Required.</div>
+                </div>
+                <label for="description" class="form-label">Add a description of the trip</label> // añadir lo de extend
+                para que se más grande
+                <input type="text" class="form-control" id="description" name="description"
+                    aria-describedby="emailHelp">
+
+                <label for="numberOfPassengers" class="form-label">How many seats are avalaibles in your car?</label>
+                <input type="number" class="form-control" id="numberOfPassengers" name="numberOfPassengers"
+                    aria-describedby="emailHelp">
+
+                <fieldset>
+                    <p id="userType">Can smoke the passengers in your car?</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="smokingAllowed" value="true" // CUIDADO
+                            AQUÍ id="smokingAllowed">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="form-check" class="form-label">
+                        <input class="form-check-input" name="smokingAllowed" type="checkbox" value="false" // CUIDADO
+                            AQUÍ id="smokingAllowed">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            No
+                        </label>
+                </fieldset>
+
+
+
+                <input type="submit" value="Create your trip">
+
+            </form>
+        </div>
+    </div>
+</div>

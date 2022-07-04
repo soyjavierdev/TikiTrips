@@ -1,0 +1,19 @@
+<div class="container">
+    <h2 class="page-title">Our travels</h2>
+    <div class="row">
+        {{#each trips}}
+        <div class="col-3 mb-5 mt-5">
+            <div class="card" style="width: 18rem;">
+                <img src="{{profilePic}}" class="card-img-top" alt="{{username}} profile picture">
+                <div class="card-body">
+                    <h5 class="card-title">From: {{origin.address}}</h5>
+                    <h5 class="card-title">To: {{destination.address}}</h5>
+                    <p class="card-text">Avalaible seats: {{numberOfPassengers}}</p>
+                    <a href="/trips/{{id}}" class="btn btn-primary">View trip</a>
+                    <a href="#" class="btn btn-success">Join trip</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

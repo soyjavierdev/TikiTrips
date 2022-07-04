@@ -1,0 +1,29 @@
+body {
+
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+}
+
+h1 {
+  color: 15px;
+}
+
+/* Nav Style */
+
+#navbarSupportedContent {
+  margin-right: 10%;
+  justify-content: end;
+}
+
+.navbar-brand {
+  margin-left: 10%;
+}
+
+/* User type title signup */
+
+#userType {
+  font: 14px;
+}
