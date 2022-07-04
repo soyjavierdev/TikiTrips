@@ -1,29 +1,40 @@
 const { listenerCount } = require("../models/Car.model")
 const router = require("express").Router()
 const User = require("./../models/User.model")
+const { isLoggedIn, isLoggedOut } = require('./../middleware/session-guard')
+
+
+
 // Users list
-router.get('/users', (req, res, next) => {
+
+router.get('/users', isLoggedIn, (req, res, next) => {
     User
         .find()
         .then(users => {
-            res.render('user/users', { users })
+            res.render('user/list-users', { users })
         })
         .catch(err => console.log(err))
 })
+
+
 // One user details
-router.get('/users/:id', (req, res, next) => {
+
+router.get('/users/:id', isLoggedIn, (req, res, next) => {
     const { id } = req.params
     User
         .findById(id)
         .then(user => {
-            res.render('user/details', { user })
+            res.render('user/details-users', { user })
         })
         .catch(err => console.log(err))
 })
+
+
 // Update user
-router.get('/users/:id/edit', (req, res, next) => {
-    // res.send('no arriesgo')
+
+router.get('/users/:id/edit', isLoggedIn, (req, res, next) => {
     const { id } = req.params
+    
     User
         .findById(id)
         // .then(user => {
@@ -37,10 +48,10 @@ router.get('/users/:id/edit', (req, res, next) => {
         //     const info = { user, isPassenger, isDriver }
         //     return info
         // })
-        .then(info => res.render('user/update', info))
+        .then(info => res.render('user/edit-users', info))
         .catch(err => console.log(err))
 })
-router.post('/users/:id/edit', (req, res, next) => {
+router.post('/users/:id/edit', isLoggedIn, (req, res, next) => {
     const { username, bio, profilePic, email, phoneNumber, role, birth } = req.body
     const { id } = req.params
     User
@@ -48,4 +59,17 @@ router.post('/users/:id/edit', (req, res, next) => {
         .then(() => res.redirect(`/users/${id}`))
         .catch(err => console.log(err))
 })
+
+
+//Delete user
+
+router.post('/users/:id/delete', isLoggedIn, (req, res, next) => {
+    const { id } = req.params
+
+    User
+        .findByIdAndDelete(id)
+        .then(() => res.redirect('/users'))
+        .catch(err => console.log(err))
+})
+
 module.exports = router

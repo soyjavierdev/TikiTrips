@@ -4,7 +4,7 @@
         {{#each users}}
         <div class="col-3 mb-5 mt-5">
             <div class="card" style="width: 18rem;">
-                <img src="{{profilePic}}" class="card-img-top" alt="{{username}} profile picture">
+                <a href="/users/{{id}}" class="btn btn-primary"><img src="{{profilePic}}" class="card-img-top" alt="{{username}} profile picture"></a>
                 <div class="card-body">
                     <h5 class="card-title">{{username}}</h5>
                     <p class="card-text">{{role}}</p>
@@ -13,5 +13,14 @@
             </div>
         </div>
         {{/each}}
+        {{#if errorMessage}}
+            <div id="errorMessage">
+                <p>{{errorMessage}}</p>
+                <a href="/users/login" class="btn btn-primary">Log in</a>
+                <a href="/users/signup" class="btn btn-primary">Sign up</a>
+
+
+            </div>
+        {{/if}}
     </div>
 </div>
