@@ -1,29 +1,31 @@
 <div class="container">
 
     <div class="row justify-content-center">
-
+        {{#with trips}}
         <div class="col-md-6">
 
-            <h1>Create new trip!</h1>
+            <h1>Edit your trip!</h1>
 
             <hr>
 
-            <form action="/trips/create" method="POST">
+            <form action="/trips/{{id}}/edit" method="POST">
 
                 <label for="origin" class="form-label">What is the origin of the trip?</label>
-                <input type="text" class="form-control" id="origin" name="origin" aria-describedby="emailHelp">
-                <label for="exampleInputEmail1" class="form-label">Latitud origin</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="latitudeOrigin"
+                <input type="text" value="{{origin.address}}" class="form-control" id="origin" name="origin"
                     aria-describedby="emailHelp">
+                <label for="exampleInputEmail1" class="form-label">Latitude origin</label>
+                <input type="text" value="{{origin.location.coordinates}}" class="form-control" id="exampleInputEmail1"
+                    name="latitudeOrigin" aria-describedby="emailHelp">
                 <label for="exampleInputEmail1" class="form-label">Longitude origin</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="longitudeOrigin"
                     aria-describedby="emailHelp">
+
                 <label for="destination" class="form-label">What is the destination of the trip?</label>
-                <input type="text" class="form-control" id="destination" name="destination"
-                    aria-describedby="emailHelp">
-                <label for="exampleInputEmail1" class="form-label">Latitud destination</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="latitudeDestination"
-                    aria-describedby="emailHelp">
+                <input type="text" value="{{destination.address}}" class="form-control" id="destination"
+                    name="latitudeDestination" aria-describedby="emailHelp">
+                <label for="exampleInputEmail1" class="form-label">Latitude destination </label>
+                <input type="text" value="{{destination.location.coordinates}}" class="form-control"
+                    id="exampleInputEmail1" name="latitudeDestination" aria-describedby="emailHelp">
                 <label for="exampleInputEmail1" class="form-label">Longitude destination</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="longitudeDestination"
                     aria-describedby="emailHelp">
@@ -37,12 +39,11 @@
                 </div>
                 <label for="description" class="form-label">Add a description of the trip</label> // añadir lo de extend
                 para que se más grande
-                <input type="text" class="form-control" id="description" name="description"
-                    aria-describedby="emailHelp">
+                <textarea class="form-control" id="description" rows="3" name="description">{{description}}</textarea>
 
                 <label for="numberOfPassengers" class="form-label">How many seats are avalaibles in your car?</label>
-                <input type="number" class="form-control" id="numberOfPassengers" name="numberOfPassengers"
-                    aria-describedby="emailHelp">
+                <input type="number" value="{{numberOfPassengers}}" class="form-control" id="numberOfPassengers"
+                    name="numberOfPassengers" aria-describedby="emailHelp">
 
                 <fieldset>
                     <p id="userType">Can smoke the passengers in your car?</p>
@@ -67,5 +68,6 @@
 
             </form>
         </div>
+        {{/with}}
     </div>
 </div>

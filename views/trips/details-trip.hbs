@@ -1,18 +1,17 @@
-Estoy haciendolo
-
 <div class="container">
-    <h2 class="page-title">Details for {{user.username}}</h2>
+    <h2 class="page-title">Details for {{trip.destination.address}}</h2>
     <div class="row">
         <div class="col-3 mb-5 mt-5">
             <div class="card" style="width: 18rem;">
-                <img src="{{user.profilePic}}" class="card-img-top" alt="{{user.username}} profile picture">
+                <img src="{{trip.profilePic}}" class="card-img-top" alt="{{trip.username}} profile picture">
                 <div class="card-body">
-                    <h5 class="card-title">{{user.username}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{trip.description}}</h6>
-                    <p class="card-text">Email: {{user.email}}</p>
-                    <p class="card-text">Phone number: {{user.phoneNumber}}</p>
-                    <p class="card-text">Type of user: {{user.role}}</p>
-                    <a href="/users" class="btn btn-primary">Volver a lista</a>
+                    <h5 class="card-title">from :{{trip.origin.address}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Details:{{trip.description}}</h6>
+                    <p class="card-text">Date of the trip: {{trip.date}}</p>
+                    <p class="card-text">Avalaible seats: {{trip.numberOfPassengers}}</p>
+                    <p class="card-text">Can i smoke? {{trip.smokingAllowed}}</p>
+                    <a href="/trips/{{trip.id}}/edit" class="btn btn-warning">Edit</a>
+                    <a href="/trips" class="btn btn-primary">Volver a lista</a>
                 </div>
             </div>
         </div>
