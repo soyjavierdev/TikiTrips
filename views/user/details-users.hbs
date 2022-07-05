@@ -11,10 +11,18 @@
                     <p class="card-text">Phone number: {{user.phoneNumber}}</p>
                     <p class="card-text">Type of user: {{user.role}}</p>
                     <a href="/users" class="btn btn-primary">Go back</a>
+                    {{#if allRoles.isAdmin}}
                     <a href="/users/{{user.id}}/edit" class="btn btn-warning">Edit</a>
                     <form action="/users/{{user.id}}/delete" method="POST" style="display: inline-block">
                         <input type="submit" value="Delete" class="btn btn-danger btn-sm">
                     </form>
+                    {{/if}}
+                    {{#if selfUser}}
+                    <a href="/users/{{user.id}}/edit" class="btn btn-warning">Edit</a>
+                    <form action="/users/{{user.id}}/delete" method="POST" style="display: inline-block">
+                        <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                    </form>
+                    {{/if}}
                 </div>
             </div>
         </div>

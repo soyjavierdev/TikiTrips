@@ -3,6 +3,7 @@ const router = require("express").Router()
 const User = require("./../models/User.model")
 const { isLoggedIn, isLoggedOut } = require('./../middleware/session-guard')
 const { checkRole } = require('./../middleware/roles-checker')
+const { isAuthorized } = require('./../middleware/admin-owner-checker')
 
 const { rolesChecker } = require("./../utils/roles-checker")
 
@@ -24,18 +25,34 @@ router.get('/users', isLoggedIn, (req, res, next) => {
 
 router.get('/users/:id', isLoggedIn, (req, res, next) => {
     const { id } = req.params
+
     User
         .findById(id)
         .then(user => {
-            res.render('user/details-users', { user })
+            const allRoles = rolesChecker(req.session.currentUser)
+
+            console.log(rolesChecker(req.session.currentUser))
+
+            let selfUser = false
+
+            if (id === req.session.currentUser._id && allRoles.isAdmin === false) {
+                selfUser = true
+            }
+
+            res.render('user/details-users', { user, allRoles, selfUser })
         })
         .catch(err => console.log(err))
 })
 
 
+// My profile
+
+
+
+
 // Update user
 
-router.get('/users/:id/edit', isLoggedIn, (req, res, next) => {
+router.get('/users/:id/edit', isLoggedIn, isAuthorized, (req, res, next) => {
     const { id } = req.params
 
     let selfUser = false
@@ -47,18 +64,15 @@ router.get('/users/:id/edit', isLoggedIn, (req, res, next) => {
     User
         .findById(id)
         .then(user => {
-            const adminRole = rolesChecker(user).isAdmin
-            const driverRole = rolesChecker(user).isDriver
-            const passengerRole = rolesChecker(user).isPassenger
-            console.log(rolesChecker(user))
+            const allRoles = rolesChecker(user)
 
-            res.render('user/edit-users', { user, adminRole, driverRole, passengerRole, selfUser })
+            res.render('user/edit-users', { user, allRoles, selfUser })
 
         })
         .catch(err => console.log(err))
 })
 
-router.post('/users/:id/edit', isLoggedIn, (req, res, next) => {
+router.post('/users/:id/edit', isLoggedIn, isAuthorized, (req, res, next) => {
     const { username, bio, profilePic, email, phoneNumber, role, birth } = req.body
     const { id } = req.params
 
@@ -71,7 +85,7 @@ router.post('/users/:id/edit', isLoggedIn, (req, res, next) => {
 
 //Delete user
 
-router.post('/users/:id/delete', isLoggedIn, (req, res, next) => {
+router.post('/users/:id/delete', isLoggedIn, isAuthorized, (req, res, next) => {
     const { id } = req.params
 
     User
