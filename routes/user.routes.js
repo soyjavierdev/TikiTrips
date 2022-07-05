@@ -1,7 +1,10 @@
-const { listenerCount } = require("../models/Car.model")
+// const { listenerCount } = require("../models/Car.model")
 const router = require("express").Router()
 const User = require("./../models/User.model")
 const { isLoggedIn, isLoggedOut } = require('./../middleware/session-guard')
+const { checkRole } = require('./../middleware/roles-checker')
+
+const { rolesChecker } = require("./../utils/roles-checker")
 
 
 
@@ -34,26 +37,31 @@ router.get('/users/:id', isLoggedIn, (req, res, next) => {
 
 router.get('/users/:id/edit', isLoggedIn, (req, res, next) => {
     const { id } = req.params
-    
+
+    let selfUser = false
+
+    if (id === req.session.currentUser._id) {
+        selfUser = true
+    }
+
     User
         .findById(id)
-        // .then(user => {
-        //     const isPassenger = false
-        //     const isDriver = false
-        //     if (user.role === 'PASSENGER') {
-        //         isPassenger = true
-        //     } else if (user.role === 'DRIVER') {
-        //         isDriver = true
-        //     }
-        //     const info = { user, isPassenger, isDriver }
-        //     return info
-        // })
-        .then(info => res.render('user/edit-users', info))
+        .then(user => {
+            const adminRole = rolesChecker(user).isAdmin
+            const driverRole = rolesChecker(user).isDriver
+            const passengerRole = rolesChecker(user).isPassenger
+            console.log(rolesChecker(user))
+
+            res.render('user/edit-users', { user, adminRole, driverRole, passengerRole, selfUser })
+
+        })
         .catch(err => console.log(err))
 })
+
 router.post('/users/:id/edit', isLoggedIn, (req, res, next) => {
     const { username, bio, profilePic, email, phoneNumber, role, birth } = req.body
     const { id } = req.params
+
     User
         .findByIdAndUpdate(id, { username, bio, profilePic, email, phoneNumber, role, birth })
         .then(() => res.redirect(`/users/${id}`))
