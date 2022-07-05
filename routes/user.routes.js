@@ -21,6 +21,20 @@ router.get('/users', isLoggedIn, (req, res, next) => {
 })
 
 
+// My profile
+
+router.get('/users/myprofile', isLoggedIn, (req, res, next) => {
+
+
+    const { id } = req.params
+
+    User
+        .findById(id)
+        .then(user => res.render('user/my-profile', { user: req.session.currentUser }))
+        .catch(err => console.log(err))
+
+})
+
 // One user details
 
 router.get('/users/:id', isLoggedIn, (req, res, next) => {
@@ -43,11 +57,6 @@ router.get('/users/:id', isLoggedIn, (req, res, next) => {
         })
         .catch(err => console.log(err))
 })
-
-
-// My profile
-
-
 
 
 // Update user
