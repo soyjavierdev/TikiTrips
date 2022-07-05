@@ -11,4 +11,5 @@ router.get('/trips/:id', (req, res) => {
         .catch(err => res.json({ Message: 'server error', err }))
 })
 
+
 module.exports = router

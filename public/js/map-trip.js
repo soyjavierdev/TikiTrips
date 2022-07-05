@@ -4,6 +4,8 @@ function init() {
     renderMap()
     getTripsFromDB()
 
+
+
 }
 
 
@@ -31,14 +33,21 @@ function getTripsFromDB() {
 function printMarkers(trips) {
 
 
-
     let position = { lat: trips.origin.location.coordinates[0], lng: trips.origin.location.coordinates[1] }
 
+    console.log(position, "EEEEEEEE")
+
+    let positionEnd = { latEnd: trips.destination.location.coordinates[0], lngEnd: trips.destination.location.coordinates[1] }
+
+    console.log(positionEnd, "AAAAAAAAAA")
 
     new google.maps.Marker({ position, map })
+    new google.maps.Marker({ positionEnd, map })
 
 
-    map.setCenter({ lat: trips[0].location.coordinates[0], lng: trips[0].location.coordinates[1] })
+    // map.setCenter({ lat: trips[0].location.coordinates[0], lng: trips[0].location.coordinates[1] })
 }
+
+
 
 
