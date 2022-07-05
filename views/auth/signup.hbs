@@ -54,20 +54,18 @@
 
 
                 <fieldset>
-                    <p id="userType">What kind of user are you?</p>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="role" value="PASSENGER"
-                            id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Passenger
-                        </label>
+                    <legend id="userType">What kind of user are you?</legend>
+
+                    <div>
+                        <input class="form-check-input" type="radio" id="flexCheckDefault" name="role"
+                            value="PASSENGER">
+                        <label for="PASSENGER">Passenger</label>
                     </div>
-                    <div class="form-check" class="form-label">
-                        <input class="form-check-input" name="role" type="checkbox" value="DRIVER"
-                            id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked">
-                            Driver
-                        </label>
+
+                    <div>
+                        <input class="form-check-input" type="radio" id="flexCheckDefault" name="role" value="DRIVER">
+                        <label for="DRIVER">Driver</label>
+                    </div>
                 </fieldset>
 
                 <hr>
@@ -76,13 +74,6 @@
                     <button type="submit" class="btn btn-dark block">Submit</button>
                 </div>
 
-
-                <!--
-                    {{#if errorMessage}}
-                    <div id="errorMessage">
-                        <p>{{errorMessage}}</p>
-                    </div>
-                    {{/if}}   -->
 
             </form>
         </div>
