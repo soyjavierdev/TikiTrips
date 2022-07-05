@@ -55,7 +55,6 @@ router.get('/trips/:id', (req, res, next) => {
 router.get('/trips/:id/edit', (req, res, next) => {
 
     const { id } = req.params
-    console.log("hola aqui estamos")
 
     Trip
 
@@ -101,6 +100,7 @@ router.post('/trips/:id/delete', (req, res) => {
 
 // Trip map
 
+/*
 router.get("/trips/:id", (req, res, next) => {
     const { id } = req.params
 
@@ -110,7 +110,7 @@ router.get("/trips/:id", (req, res, next) => {
             res.render('trips/details-trip', { trip })
         })
         .catch(err => console.log(err))
-})
+}) */
 
 
 

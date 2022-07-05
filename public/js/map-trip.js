@@ -16,8 +16,10 @@ function renderMap() {
 
 
 function getTripsFromDB() {
+
+    const path = window.location.pathname
     axios
-        .get('/api/trips')
+        .get(`/api${path}`)
         .then(response => {
             console.log(response)
             printMarkers(response.data)
@@ -28,14 +30,15 @@ function getTripsFromDB() {
 
 function printMarkers(trips) {
 
-    console.log(trips)
 
-    trips.forEach(trip => {
 
-        let position = { lat: trip.origin.location.coordinates[0], lng: trip.origin.location.coordinates[1] }
+    let position = { lat: trips.origin.location.coordinates[0], lng: trips.origin.location.coordinates[1] }
 
-        new google.maps.Marker({ position, map })
-    })
+
+    new google.maps.Marker({ position, map })
+
 
     map.setCenter({ lat: trips[0].location.coordinates[0], lng: trips[0].location.coordinates[1] })
 }
+
+
