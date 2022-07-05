@@ -1,19 +1,32 @@
 <div class="container">
     <h2 class="page-title">Details for {{trip.destination.address}}</h2>
+
+    <div id="myMap"></div>
     <div class="row">
         <div class="col-3 mb-5 mt-5">
+
             <div class="card" style="width: 18rem;">
+
                 <img src="{{trip.profilePic}}" class="card-img-top" alt="{{trip.username}} profile picture">
                 <div class="card-body">
-                    <h5 class="card-title">from :{{trip.origin.address}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Details:{{trip.description}}</h6>
+                    <h5 class="card-title">From: {{trip.origin.address}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Details: {{trip.description}}</h6>
                     <p class="card-text">Date of the trip: {{trip.date}}</p>
                     <p class="card-text">Avalaible seats: {{trip.numberOfPassengers}}</p>
                     <p class="card-text">Can i smoke? {{trip.smokingAllowed}}</p>
                     <a href="/trips/{{trip.id}}/edit" class="btn btn-warning">Edit</a>
-                    <a href="/trips" class="btn btn-primary">Volver a lista</a>
+                    <form action="/trips/{{trip.id}}/delete" method="POST" style="display: inline-block">
+                        <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                        <a href="/trips" class="btn btn-primary">Back to the list</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/map-trip.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyJLzEV4bMHGkkovvuE00bI7PJjY1QgSA&callback=init"></script>
+
+<!-- Atención al callback -->

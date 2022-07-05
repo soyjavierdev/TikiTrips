@@ -89,15 +89,29 @@ router.post('/trips/:id/edit', (req, res, next) => {
 
 // Delete trip
 
-/*
+
 router.post('/trips/:id/delete', (req, res) => {
     const { id } = req.params
 
     Trip
         .findByIdAndDelete(id)
-        .then(() => res.redirect('/'))
+        .then(() => res.redirect('/trips'))
         .catch(err => console.log(err))
-}) */
+})
+
+// Trip map
+
+router.get("/trips/:id", (req, res, next) => {
+    const { id } = req.params
+
+    Trip
+        .findById(id)
+        .then(trip => {
+            res.render('trips/details-trip', { trip })
+        })
+        .catch(err => console.log(err))
+})
+
 
 
 

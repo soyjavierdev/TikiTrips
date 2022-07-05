@@ -11,7 +11,9 @@ router.use('/', require('./auth.routes'))
 //  Trips routes 
 router.use('/', require('./trip.routes'))
 
+// Api Maps routes
 
+router.use('/api', require('./api.routes'))
 
 
 

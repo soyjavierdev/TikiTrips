@@ -27,3 +27,10 @@ h1 {
 #userType {
   font: 14px;
 }
+
+/* Render Map */
+
+#myMap {
+  height: 400px;
+  background-color: red;
+}
