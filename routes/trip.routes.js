@@ -105,9 +105,41 @@ router.post('/trips/:id/delete', isLoggedIn, (req, res) => {
 
 // Join Trip
 router.get('/trips/:id/join', isLoggedIn, (req, res) => {
-    res.render('trips/join-user-trip')
+
+    const { id } = req.params
+    console.log("EOEOEEO", req.session)
+
+    const idNewPassenger = req.session.currentUser._id
+
+    Trip
+        .findByIdAndUpdate(id, { $push: { passengers: idNewPassenger } })
+        .then((passengers) => res.render('trips/join-user-trip', { passengers }))
+        .catch(err => console.log(err))
 })
 
+
+/*
+router.post("/trips/create", isLoggedIn, (req, res, next) => {
+
+    const { origin, destination, latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination, date, description, numberOfPassengers, smokingAllowed } = req.body
+
+    Trip
+        .create({
+            origin: {
+                address: origin,
+                location: { type: 'Point', coordinates: [latitudeOrigin, longitudeOrigin] }
+            },
+
+            destination: {
+                address: destination,
+                location: { type: 'Point', coordinates: [latitudeDestination, longitudeDestination] }
+            },
+            date, description, numberOfPassengers, smokingAllowed
+        })
+
+        .then(() => res.redirect('/trips'))
+        .catch(err => console.log(err))
+})  */
 
 
 

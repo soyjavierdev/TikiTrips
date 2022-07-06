@@ -1,3 +1,19 @@
-<h1>You have joined the trip! </h1>
-
-<p>User who have joined the trip</p>
+<div class="container">
+    <h2 class="page-title">You have joined the trip!</h2>
+    <div class="row">
+        {{#with passengers}}
+        <p>User who have joined the trip{{username}},{{smokingAllowed}}
+        <div class="col-3 mb-5 mt-5">
+            <div class="card" style="width: 18rem;">
+                <a href="/users/{{id}}" class="btn btn-primary"><img src="{{profilePic}}" class="card-img-top"
+                        alt="{{username}} profile picture"></a>
+                <div class="card-body">
+                    <h5 class="card-title">{{numberOfPassengers}}</h5>
+                    <p class="card-text">{{role}}</p>
+                    <a href="/users/{{id}}" class="btn btn-primary">Check profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/with}}
+</div>
