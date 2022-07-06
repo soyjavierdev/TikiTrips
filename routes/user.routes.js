@@ -1,5 +1,6 @@
 const router = require("express").Router()
 const User = require("./../models/User.model")
+const Rating = require("./../models/Rating.model")
 const { isLoggedIn, isLoggedOut } = require('./../middleware/session-guard')
 const { checkRole } = require('./../middleware/roles-checker')
 const { isAuthorized } = require('./../middleware/admin-owner-checker')
@@ -82,9 +83,19 @@ router.post('/users/:id/edit', isLoggedIn, isAuthorized, (req, res, next) => {
 //Individual Rating
 router.post('/users/:id/rating', (req, res, next) => {
 
-    const { score, comment } = req.body
-    const { id } = req.params
-    const { currenUser } = req.session
+    // const { content } = req.body
+    // const { id } = req.params.
+    // const { currentUser } = req.session
+
+    // const editRating = { judge: currentUser._id, content }
+
+    // Rating
+    //     .create(editRating)
+    //     .then(rating => {
+    //         User.findByIdAndUpdate(id, { $push: { ratingArr: rating._id } })
+    //     })
+
+
 
 
 
