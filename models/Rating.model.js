@@ -7,6 +7,7 @@ const ratingSchema = new Schema(
             min: 1,
             max: 5,
             required: [true, 'Please include a number between 1 and 5'],
+            integer: true
         },
 
         comment: {
