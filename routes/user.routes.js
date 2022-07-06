@@ -1,4 +1,3 @@
-// const { listenerCount } = require("../models/Car.model")
 const router = require("express").Router()
 const User = require("./../models/User.model")
 const { isLoggedIn, isLoggedOut } = require('./../middleware/session-guard')
