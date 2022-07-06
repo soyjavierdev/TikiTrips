@@ -8,6 +8,7 @@ const userSchema = new Schema(
       minlength: [3, 'Username must be at least 3 characters long'],
       maxlength: [50, 'Username cannot be more than 50 characters long'],
       trim: true,
+      set: value => value.charAt(0).toUpperCase() + value.substring(1).toLowerCase()
     },
     bio: {
       type: String,

@@ -13,6 +13,10 @@
                     <p class="card-text">Avalaible seats: {{numberOfPassengers}}</p>
                     <a href="/trips/{{id}}" class="btn btn-primary">View trip</a>
                     <a href="/trips/{{id}}/join" class="btn btn-success">Join trip</a>
+
+                    <form action="/trips/{{id}}/join" method="POST" style="display: inline-block">
+                        <input type="submit" value="Join Trip" class="btn btn-danger btn-sm">
+                    </form>
                 </div>
             </div>
         </div>

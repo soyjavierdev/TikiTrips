@@ -120,11 +120,22 @@ router.get('/trips/:id/join', isLoggedIn, (req, res) => {
 
     const idNewPassenger = req.session.currentUser._id
 
+
     Trip
-        .findByIdAndUpdate(id, { $push: { passengers: idNewPassenger } })
-        .then((passengers) => res.render('trips/join-user-trip', { passengers }))
+        .findByIdAndUpdate(id, { $push: { passengers: idNewPassenger } }, { new: true })
+        .populate('passengers')
+        .then(updatedTrip => {
+
+            console.log('-------->', updatedTrip)
+            res.render('trips/join-user-trip', updatedTrip)
+
+        })
         .catch(err => console.log(err))
 })
+
+
+
+
 
 
 /*
