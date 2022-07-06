@@ -12,27 +12,25 @@ function renderMap() {
         }
     )
 }
+
 function getTripsFromDB() {
 
     const path = window.location.pathname
     axios
         .get(`/api${path}`)
         .then(response => {
-            console.log(response)
             getRouteDetails(response.data)
         })
         .catch(err => console.log(err))
 }
 
-function getRouteDetails() {
+function getRouteDetails(info) {
 
     const directions = new google.maps.DirectionsService()
-    const originAddress = origin.address
-    console.log(originAddress, "HOLA")
 
     const routeDetails = {
-        origin: 'Ironhack Madrid',
-        destination: 'Paris',
+        origin: info.origin.address,
+        destination: info.destination.address,
         travelMode: 'DRIVING'
     }
 
