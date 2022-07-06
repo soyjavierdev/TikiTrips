@@ -5,6 +5,7 @@ const { isLoggedIn, isLoggedOut } = require('./../middleware/session-guard')
 const { checkRole } = require('./../middleware/roles-checker')
 
 
+
 // Create trip
 router.get("/trips/create", isLoggedIn, checkRole('ADMIN', 'DRIVER'), (req, res, next) => res.render('trips/new-trip'))
 
@@ -113,52 +114,46 @@ router.post('/trips/:id/delete', isLoggedIn, (req, res) => {
 router.get('/trips/:id/join', isLoggedIn, (req, res) => {
 
     const { id } = req.params
-    console.log("EOEOEEO", req.session)
+    const { numberOfPassengers } = req.body
+
+
+
 
     const idNewPassenger = req.session.currentUser._id
 
+    Trip.findById(id)
+        .select("passengers numberOfPassengers")
+        .then(data => {
+            const passengersInCar = data.passengers.length
+            const numberOfPassengers = data.numberOfPassengers
+            if (passengersInCar < numberOfPassengers) {
 
-    Trip
-        .findByIdAndUpdate(id, { $push: { passengers: idNewPassenger } }, { new: true })
-        .populate('passengers')
-        .then(updatedTrip => {
+                Trip
+                    .findByIdAndUpdate(id, { $addToSet: { passengers: idNewPassenger } }, { new: true })
+                    .populate('passengers')
+                    .then((updatedTrip) => {
+                        res.render('trips/join-user-trip', updatedTrip)
+                    })
+                    .catch(err => console.log(err))
 
-            console.log('-------->', updatedTrip)
-            res.render('trips/join-user-trip', updatedTrip)
-
+            } else {
+                res.redirect("/");
+            }
         })
         .catch(err => console.log(err))
+    // Trip
+
+    //     .findByIdAndUpdate(id, { $addToSet: { passengers: idNewPassenger } }, { new: true })
+    //     .populate('passengers')
+    //     .then(updatedTrip => {
+    //          res.render('trips/join-user-trip', updatedTrip)
+    //         })
+
+    //        
+
+    //     })
+    //     .catch(err => console.log(err))
 })
-
-
-
-
-
-
-/*
-router.post("/trips/create", isLoggedIn, (req, res, next) => {
-
-    const { origin, destination, latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination, date, description, numberOfPassengers, smokingAllowed } = req.body
-
-    Trip
-        .create({
-            origin: {
-                address: origin,
-                location: { type: 'Point', coordinates: [latitudeOrigin, longitudeOrigin] }
-            },
-
-            destination: {
-                address: destination,
-                location: { type: 'Point', coordinates: [latitudeDestination, longitudeDestination] }
-            },
-            date, description, numberOfPassengers, smokingAllowed
-        })
-
-        .then(() => res.redirect('/trips'))
-        .catch(err => console.log(err))
-})  */
-
-
 
 
 module.exports = router
