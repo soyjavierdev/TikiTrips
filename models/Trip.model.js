@@ -49,6 +49,11 @@ const tripSchema = new Schema(
         owner: {
             type: Schema.Types.ObjectId,
             ref: 'User'
+        },
+        passengers: {
+            type: [Schema.Types.ObjectId],
+            ref: 'User'
+
         }
     },
     /////// ¿METER IMAGEN DEL MAPA?

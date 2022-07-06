@@ -1,11 +1,11 @@
 const router = require("express").Router()
 const Trip = require("../models/Trip.model")
+const User = require("./../models/User.model")    //For populated
 const { isLoggedIn, isLoggedOut } = require('./../middleware/session-guard')
 const { checkRole } = require('./../middleware/roles-checker')
 
 
 // Create trip
-
 router.get("/trips/create", isLoggedIn, checkRole('ADMIN', 'DRIVER'), (req, res, next) => res.render('trips/new-trip'))
 
 router.post("/trips/create", isLoggedIn, (req, res, next) => {
@@ -30,8 +30,8 @@ router.post("/trips/create", isLoggedIn, (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-// Show Trips
 
+// Show Trips
 router.get('/trips', isLoggedIn, (req, res, next) => {
 
     Trip
@@ -42,7 +42,7 @@ router.get('/trips', isLoggedIn, (req, res, next) => {
 })
 
 
-// Show Deatils of Trip
+// Show Details of Trip
 router.get('/trips/:id', isLoggedIn, (req, res, next) => {
 
     const { id } = req.params
@@ -73,28 +73,25 @@ router.get('/trips/:id/edit', isLoggedIn, (req, res, next) => {
 router.post('/trips/:id/edit', isLoggedIn, (req, res, next) => {
 
     const { id } = req.params
-    const { origin, destination, latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination, date, description, numberOfPassengers, smokingAllowed } = req.body
+    const { origin, destination, date, description, numberOfPassengers, smokingAllowed } = req.body
 
     Trip
         .findByIdAndUpdate(id, {
             origin: {
                 address: origin,
-                location: { type: 'Point', coordinates: [latitudeOrigin, longitudeOrigin] }
             },
 
             destination: {
                 address: destination,
-                location: { type: 'Point', coordinates: [latitudeDestination, longitudeDestination] }
+
             }, date, description, numberOfPassengers, smokingAllowed
         })
-        .then(() => res.redirect('/'))
+        .then(() => res.redirect('/trips'))
         .catch(err => console.log(err))
 });
 
 
 // Delete trip
-
-
 router.post('/trips/:id/delete', isLoggedIn, (req, res) => {
 
     const { id } = req.params
@@ -104,6 +101,13 @@ router.post('/trips/:id/delete', isLoggedIn, (req, res) => {
         .then(() => res.redirect('/trips'))
         .catch(err => console.log(err))
 })
+
+
+// Join Trip
+router.get('/trips/:id/join', isLoggedIn, (req, res) => {
+    res.render('trips/join-user-trip')
+})
+
 
 
 
