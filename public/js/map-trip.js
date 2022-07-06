@@ -1,9 +1,66 @@
 let map
 
+function renderMap() {
+
+    getTripsFromDB()
+
+    map = new google.maps.Map(
+        document.querySelector('#myMap'),
+        {
+            zoom: 12,
+
+        }
+    )
+}
+function getTripsFromDB() {
+
+    const path = window.location.pathname
+    axios
+        .get(`/api${path}`)
+        .then(response => {
+            console.log(response)
+            getRouteDetails(response.data)
+        })
+        .catch(err => console.log(err))
+}
+
+function getRouteDetails() {
+
+    const directions = new google.maps.DirectionsService()
+    const originAddress = origin.address
+    console.log(originAddress, "HOLA")
+
+    const routeDetails = {
+        origin: 'Ironhack Madrid',
+        destination: 'Paris',
+        travelMode: 'DRIVING'
+    }
+
+    directions.route(
+        routeDetails,
+        routeResults => {
+
+            renderRoutes(routeResults)
+        }
+    )
+}
+
+function renderRoutes(routeResults) {
+    console.log(window.location)
+    const renderer = new google.maps.DirectionsRenderer()
+
+    renderer.setDirections(routeResults)
+    renderer.setMap(map)
+}
+
+/* 
+
+let map
+
 function init() {
     renderMap()
     getTripsFromDB()
-
+    getRouteDetails()
 
 
 }
@@ -47,7 +104,4 @@ function printMarkers(trips) {
 
     // map.setCenter({ lat: trips[0].location.coordinates[0], lng: trips[0].location.coordinates[1] })
 }
-
-
-
-
+*/
