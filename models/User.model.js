@@ -39,6 +39,10 @@ const userSchema = new Schema(
       type: Date,
       required: [true, 'Please include your birthday'],
     },
+    ratingArr: {
+      type: [Schema.Types.ObjectId],
+      ref: 'Rating',
+    }
   },
   {
     timestamps: true,

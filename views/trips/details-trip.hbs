@@ -22,20 +22,20 @@
             </div>
         </div>
 
-        {{!-- {{#if isTripPassenger}}
+        {{#if isTripPassenger}}
         <div class="col-9 mb-5 mt-5">
 
             <div class="card" style="width: 18rem;">
 
-                <h1>Rate</h1>
+                <h1>Rate {{trip.owner.username}}</h1>
 
-                <form action="/users/signup" method="POST">
+                <form action="/users/{{trip.owner._id}}/rating" method="POST">
 
                     <div class="mb-3 row">
                         <div class="col">
                             <label for="score" class="form-label">Score (from 1 to 5):</label>
                             <input type="number" class="form-control" id="score" name="score">
-                            <div class="form-text">Required.</div>
+                            <div class="form-text">Required</div>
                         </div>
                         <div class="mb-3">
                             <label for="comment" class="form-label">Review (max. 300 characters)</label>
@@ -50,7 +50,7 @@
                 </form>
             </div>
         </div>
-        {{/if}} --}}
+        {{/if}}
     </div>
 </div>
 

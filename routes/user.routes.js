@@ -79,6 +79,17 @@ router.post('/users/:id/edit', isLoggedIn, isAuthorized, (req, res, next) => {
 })
 
 
+//Individual Rating
+router.post('/users/:id/rating', (req, res, next) => {
+
+    const { score, comment } = req.body
+    const { id } = req.params
+    const { currenUser } = req.session
+
+
+
+
+})
 
 //Delete user
 router.post('/users/:id/delete', isLoggedIn, isAuthorized, (req, res, next) => {

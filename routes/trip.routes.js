@@ -23,9 +23,8 @@ router.post("/trips/create", isLoggedIn, (req, res, next) => {
                 address: destination,
                 location: { type: 'Point', coordinates: [latitudeDestination, longitudeDestination] }
             },
-            date, description, numberOfPassengers, smokingAllowed
+            date, description, numberOfPassengers, smokingAllowed, owner: req.session.currentUser._id
         })
-
         .then(() => res.redirect('/trips'))
         .catch(err => console.log(err))
 })
@@ -49,17 +48,15 @@ router.get('/trips/:id', isLoggedIn, (req, res, next) => {
 
     Trip
         .findById(id)
-        // .populate('passengers')
+        .populate('passengers owner')
         .then(trip => {
-
-            // let isTripPassenger = false
-            // trip.passengers.forEach(element => {
-            //     if (element._id === req.session.currentUser._id) {
-            //         isTripPassenger = true
-            //     }
-            // })
-
-            res.render('trips/details-trip', { trip /*, isTripPassenger */ })
+            let isTripPassenger = false
+            trip.passengers.forEach(element => {
+                if (element._id.toString() === req.session.currentUser._id) {
+                    isTripPassenger = true
+                }
+            })
+            res.render('trips/details-trip', { trip, isTripPassenger })
         })
         .catch(err => console.log(err))
 })
