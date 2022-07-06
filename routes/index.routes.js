@@ -16,6 +16,6 @@ router.use('/api', require('./api.routes'))
 router.use('/', require('./user.routes'))
 
 // Rating routes
-router.use('/', require('./rating.routes'))
+// router.use('/', require('./rating.routes'))
 
 module.exports = router

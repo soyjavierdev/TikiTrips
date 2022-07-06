@@ -49,8 +49,17 @@ router.get('/trips/:id', isLoggedIn, (req, res, next) => {
 
     Trip
         .findById(id)
+        // .populate('passengers')
         .then(trip => {
-            res.render('trips/details-trip', { trip })
+
+            // let isTripPassenger = false
+            // trip.passengers.forEach(element => {
+            //     if (element._id === req.session.currentUser._id) {
+            //         isTripPassenger = true
+            //     }
+            // })
+
+            res.render('trips/details-trip', { trip /*, isTripPassenger */ })
         })
         .catch(err => console.log(err))
 })
