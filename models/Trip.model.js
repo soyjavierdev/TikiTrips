@@ -31,7 +31,7 @@ const tripSchema = new Schema(
 
         description: {
             type: String,
-            required: [true, 'Please include a description for your trip'],
+            required: [true, 'Please include a description of at least 20 characters'],
             minlength: [20, 'Please include a description of at least 20 characters'],
         },
 
