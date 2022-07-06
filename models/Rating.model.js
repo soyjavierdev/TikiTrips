@@ -9,12 +9,17 @@ const ratingSchema = new Schema(
             required: [true, 'Please include a number between 1 and 5'],
         },
 
-        review: {
+        comment: {
             type: String,
             maxLength: [300, 'The maximum length of reviews is 300 characters'],
         },
 
-        owner: {
+        rated: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
+
+        judge: {
             type: Schema.Types.ObjectId,
             ref: 'User'
         }

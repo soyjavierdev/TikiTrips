@@ -1,25 +1,18 @@
-const router = require("express").Router();
-const { rolesChecker } = require("./../utils/roles-checker")
+const router = require("express").Router()
 
-
-/* GET home page */
-router.get("/", (req, res, next) => {
-  res.render("index");
-});
+// Base routes
+router.use('/', require('./base.routes'))
 
 // Auth routes
-router.use('/', require('./auth.routes'))
+router.use('/users', require('./auth.routes'))
 
-//  Trips routes 
+// Trips routes 
 router.use('/', require('./trip.routes'))
 
 // Api Maps routes
-
 router.use('/api', require('./api.routes'))
 
-
-
-
+// User routes
 router.use('/', require('./user.routes'))
 
-module.exports = router;
+module.exports = router

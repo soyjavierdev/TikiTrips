@@ -22,10 +22,11 @@ router.post("/trips/create", isLoggedIn, (req, res, next) => {
             destination: {
                 address: destination,
                 location: { type: 'Point', coordinates: [latitudeDestination, longitudeDestination] }
-            }, date, description, numberOfPassengers, smokingAllowed
+            },
+            date, description, numberOfPassengers, smokingAllowed
         })
 
-        .then(trip => res.redirect('/trips'))
+        .then(() => res.redirect('/trips'))
         .catch(err => console.log(err))
 })
 
@@ -35,13 +36,15 @@ router.get('/trips', isLoggedIn, (req, res, next) => {
 
     Trip
         .find()
+        .select({ origin: 1, destination: 1, numberOfPassengers: 1 }) // Map image
         .then(trips => res.render('trips/trip-list', { trips }))
         .catch(err => console.log(err))
 })
 
-// Show Deatils of Trip
 
+// Show Deatils of Trip
 router.get('/trips/:id', isLoggedIn, (req, res, next) => {
+
     const { id } = req.params
 
     Trip
@@ -52,8 +55,8 @@ router.get('/trips/:id', isLoggedIn, (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-//  Edit trips
 
+//  Edit trips
 router.get('/trips/:id/edit', isLoggedIn, (req, res, next) => {
 
     const { id } = req.params
@@ -65,9 +68,10 @@ router.get('/trips/:id/edit', isLoggedIn, (req, res, next) => {
             res.render('trips/edit-trip', { trips })
         })
         .catch(err => console.log(err))
-});
+})
 
 router.post('/trips/:id/edit', isLoggedIn, (req, res, next) => {
+
     const { id } = req.params
     const { origin, destination, latitudeOrigin, longitudeOrigin, latitudeDestination, longitudeDestination, date, description, numberOfPassengers, smokingAllowed } = req.body
 
@@ -92,6 +96,7 @@ router.post('/trips/:id/edit', isLoggedIn, (req, res, next) => {
 
 
 router.post('/trips/:id/delete', isLoggedIn, (req, res) => {
+
     const { id } = req.params
 
     Trip

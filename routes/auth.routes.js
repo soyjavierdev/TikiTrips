@@ -3,13 +3,14 @@ const bcrypt = require('bcryptjs')
 const User = require("../models/User.model")
 const saltRounds = 10
 
+
 // Sign up
 
-router.get('/users/signup', (req, res, next) => {
+router.get('/signup', (req, res, next) => {
     res.render('auth/signup')
 })
 
-router.post('/users/signup', (req, res, next) => {
+router.post('/signup', (req, res, next) => {
 
     const { userPwd } = req.body
 
@@ -17,17 +18,18 @@ router.post('/users/signup', (req, res, next) => {
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(userPwd, salt))
         .then(hashedPassword => User.create({ ...req.body, password: hashedPassword }))
-        .then(createdUser => res.redirect('/'))
+        .then(() => res.redirect('/'))
         .catch(err => console.log(err))  // Cambiar al nuevo
 })
 
+
 // Log in
 
-router.get('/users/login', (req, res, next) => {
+router.get('/login', (req, res, next) => {
     res.render('auth/login')
 })
 
-router.post('/users/login', (req, res, next) => {
+router.post('/login', (req, res, next) => {
 
     const { email, userPwd } = req.body
 
@@ -51,7 +53,7 @@ router.post('/users/login', (req, res, next) => {
 
 // Log out
 
-router.get('/users/logout', (req, res, next) => {
+router.get('/logout', (req, res, next) => {
     req.session.destroy(() => res.redirect('/users/login'))
 })
 
