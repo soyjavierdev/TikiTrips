@@ -12,11 +12,13 @@
                     <a href="/users/{{id}}" class="btn btn-primary">Check profile</a>
                 </div> -->
             <div class="card">
-                <div class="card-image"><img src="{{profilePic}}" class="card-img-top"
-                        alt="{{username}} profile picture"></div>
+                <div class="card-image"><a href="/users/{{id}}"><img src="{{profilePic}}" class="card-img-top"
+                            alt="{{username}} profile picture"></a> </div>
                 <div class="category"> {{role}} </div>
                 <div class="heading"> {{username}}
-                    <div class="author"> <span class="name"></span></div>
+                    <div class="author"> <span class="name"><a class="a-button" href="/users/{{id}}"> View Info
+                            </a> </span>
+                    </div>
                 </div>
             </div>
         </div>
