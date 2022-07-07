@@ -1,6 +1,7 @@
 body {
 
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #ffedc7;
 }
 
 a {
@@ -75,9 +76,9 @@ h1 {
 
 #info-app {
   height: 300px;
+  background-color: white;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 40px;
   justify-content: space-around;
 
 
@@ -96,8 +97,8 @@ h1 {
 }
 
 #info-app img {
-  width: 30%;
-  height: 90%;
+  width: 60%;
+  margin-left: 30%;
 }
 
 /* buton more info in ad */
@@ -111,13 +112,10 @@ h1 {
 /*   Advert style */
 
 #ad {
-
-  height: 300px;
   background-color: #feb6aa;
 }
 
 .flex-img h3 {
-
   margin-top: 10px;
   text-align: center;
 }
@@ -141,3 +139,79 @@ footer {
   background-color: grey;
   height: 200px;
 }
+
+/*-------List-User view ------------------*/
+
+.page-title {
+  text-align: center;
+  padding-top: 15px;
+  font-family: Arial;
+  font-size: 80px;
+  text-align: center;
+  COLOR: #1278BF;
+  text-shadow: 0px 0px 9px #508AD3;
+
+}
+
+
+/* Card */
+
+/* From uiverse.io by @gagan-gv */
+
+.card {
+  width: 290px;
+  height: 374px;
+  background: white;
+  padding: .4em;
+  border-radius: 6px;
+}
+
+.card-image {
+  background-color: rgb(236, 236, 236);
+  width: 100%;
+  height: 60%;
+  border-radius: 6px 6px 0 0;
+}
+
+.card-image:hover {
+  transform: scale(0.98);
+}
+
+.category {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  padding: 50px 7px 0;
+}
+
+.category:hover {
+  cursor: pointer;
+}
+
+.heading {
+  font-weight: 600;
+  color: rgb(88, 87, 87);
+  padding-top: 14px;
+}
+
+.heading:hover {
+  cursor: pointer;
+}
+
+.author {
+  color: gray;
+  font-weight: 400;
+  font-size: 11px;
+  padding-top: 20px;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.name:hover {
+  cursor: pointer;
+}
+
+/* Button card */

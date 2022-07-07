@@ -3,17 +3,26 @@
     <div class="row">
         {{#each users}}
         <div class="col-xl-3 col-lg-4 col-md-5  mb-5 mt-5 ">
-            <div class="card" style="width: 18rem;">
+            <!--<div class="card" style="width: 18rem;">
                 <a href="/users/{{id}}" class="btn btn-primary"><img src="{{profilePic}}" class="card-img-top"
                         alt="{{username}} profile picture"></a>
                 <div class="card-body">
                     <h5 class="card-title">{{username}}</h5>
                     <p class="card-text">{{role}}</p>
                     <a href="/users/{{id}}" class="btn btn-primary">Check profile</a>
+                </div> -->
+            <div class="card">
+                <div class="card-image"><img src="{{profilePic}}" class="card-img-top"
+                        alt="{{username}} profile picture"></div>
+                <div class="category"> {{role}} </div>
+                <div class="heading"> {{username}}
+                    <div class="author"> <span class="name"></span></div>
                 </div>
             </div>
         </div>
         {{/each}}
+
+
         {{#if errorMessage}}
         <div id="errorMessage">
             <p>{{errorMessage}}</p>
