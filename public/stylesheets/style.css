@@ -34,3 +34,43 @@ h1 {
   height: 400px;
   background-color: red;
 }
+
+/* Image navbar my profile */
+
+#user-default {
+  width: 25%;
+  border-radius: 1em;
+  margin-left: 10px;
+}
+
+/*Background image */
+
+#div-container-gif {
+  height: 700px;
+  background-size: cover;
+  background-image: url("./../images/layout-gif.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Title of home */
+
+.home-title {
+  text-align: left;
+  font-family: Arial;
+  font-size: 100px;
+  text-align: center;
+  COLOR: #1278BF;
+  text-shadow: 0px 0px 9px #508AD3;
+}
+
+/* Background image 
+
+#layout-gif {
+  background-image: url("./../images/layout-gif.gif");
+  width: 100%;
+  background-repeat: no-repeat;
+
+
+
+} */

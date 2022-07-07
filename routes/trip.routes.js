@@ -116,9 +116,6 @@ router.get('/trips/:id/join', isLoggedIn, (req, res) => {
     const { id } = req.params
     const { numberOfPassengers } = req.body
 
-
-
-
     const idNewPassenger = req.session.currentUser._id
 
     Trip.findById(id)
@@ -128,8 +125,10 @@ router.get('/trips/:id/join', isLoggedIn, (req, res) => {
             const numberOfPassengers = data.numberOfPassengers
             if (passengersInCar < numberOfPassengers) {
 
+                let newNumberOfPassengers = numberOfPassengers - 1  // is for rest passengers
+
                 Trip
-                    .findByIdAndUpdate(id, { $addToSet: { passengers: idNewPassenger } }, { new: true })
+                    .findByIdAndUpdate(id, { $addToSet: { passengers: idNewPassenger }, numberOfPassengers: newNumberOfPassengers }, { new: true })
                     .populate('passengers')
                     .then((updatedTrip) => {
                         res.render('trips/join-user-trip', updatedTrip)
@@ -137,22 +136,11 @@ router.get('/trips/:id/join', isLoggedIn, (req, res) => {
                     .catch(err => console.log(err))
 
             } else {
-                res.redirect("/");
+                res.render("trips/trip-list", { errorMessage: 'This trip is already full, go back' });
             }
         })
         .catch(err => console.log(err))
-    // Trip
 
-    //     .findByIdAndUpdate(id, { $addToSet: { passengers: idNewPassenger } }, { new: true })
-    //     .populate('passengers')
-    //     .then(updatedTrip => {
-    //          res.render('trips/join-user-trip', updatedTrip)
-    //         })
-
-    //        
-
-    //     })
-    //     .catch(err => console.log(err))
 })
 
 
