@@ -81,24 +81,26 @@ router.post('/users/:id/edit', isLoggedIn, isAuthorized, (req, res, next) => {
 
 
 //Individual Rating
+
+
 router.post('/users/:id/rating', (req, res, next) => {
 
-    // const { content } = req.body
-    // const { id } = req.params.
-    // const { currentUser } = req.session
 
-    // const editRating = { judge: currentUser._id, content }
+    const { score } = req.body
+    const { id } = req.params
+    const { currentUser } = req.session
 
-    // Rating
-    //     .create(editRating)
-    //     .then(rating => {
-    //         User.findByIdAndUpdate(id, { $push: { ratingArr: rating._id } })
-    //     })
+    const editRating = { judge: currentUser._id, score }
 
-
-
-
-
+    Rating
+        .create(editRating)
+        .then(rating => {
+            console.log(id)
+            User.findByIdAndUpdate(id, { $push: { ratingArr: rating } }) // Preguntar a Clara
+        })
+        .then(() => res.render('user/ratings', { id, currentUser, editRating }))
+        .catch(err => console.log(err))
+    console.log(id)
 
 })
 
