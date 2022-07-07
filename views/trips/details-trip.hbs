@@ -6,13 +6,13 @@
         <div class="col-3 mb-5 mt-5">
 
             <div class="card" style="width: 18rem;">
-                <a href="/users/{{id}}" class="btn btn-primary"><img src="{{trip.owner.profilePic}}"
-                        class="card-img-top" alt="{{trip.username}}" profile picture"></a>
+                <a href="/users/{{trip.owner._id}}" class="btn btn-primary"><img src="{{trip.owner.profilePic}}"
+                        class="card-img-top" alt="{{trip.username}} profile picture"></a>
 
                 <div class="card-body">
                     <h2> {{trip.owner.username}} is your driver!</h2>
                     <h5 class="card-title">From: {{trip.origin.address}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Details: {{trip.description}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Details: {{trip.description}} {{trip._id}}</h6>
                     <p class="card-text">Date of the trip: {{trip.date}}</p>
                     <p class="card-text">Avalaible seats: {{trip.numberOfPassengers}}
 
@@ -21,7 +21,7 @@
 
 
                     </p>
-                    <p class="card-text">Can i smoke? {{trip.smokingAllowed}}</p>
+                    <p class="card-text">Smoking allowed? {{trip.smokingAllowed}}</p>
                     <a href="/trips/{{trip.id}}/edit" class="btn btn-warning">Edit</a>
                     <form action="/trips/{{trip.id}}/delete" method="POST" style="display: inline-block">
                         <input type="submit" value="Delete" class="btn btn-danger btn-sm">
