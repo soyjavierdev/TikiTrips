@@ -75,7 +75,6 @@ router.get('/trips/:id/edit', isLoggedIn, (req, res, next) => {
         .findById(id)
         .then(trips => {
 
-            console.log(req.session.currentUser.role)
             if (trips.owner._id.toString() === req.session.currentUser._id || req.session.currentUser.role === 'ADMIN') {
                 res.render('trips/edit-trip', { trips })
             } else {
