@@ -1,6 +1,7 @@
 const router = require("express").Router()
 const bcrypt = require('bcryptjs')
 const User = require("../models/User.model")
+const uploaderConfig = require('./../config/uploader.config')
 const saltRounds = 10
 
 
@@ -10,14 +11,20 @@ router.get('/signup', (req, res, next) => {
     res.render('auth/signup')
 })
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', uploaderConfig.single('img'), (req, res, next) => {
 
     const { userPwd } = req.body
+    let image
+    if (req.file) {
+        image = { profilePic: req.file.path }
+    } else {
+        image = "https://toppng.com/uploads/preview/instagram-default-profile-picture-11562973083brycehrmyv.png"
+    }
 
     bcrypt
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(userPwd, salt))
-        .then(hashedPassword => User.create({ ...req.body, password: hashedPassword }))
+        .then(hashedPassword => User.create({ ...req.body, password: hashedPassword, profilePic: image }))
         .then(() => res.redirect('/'))
         .catch(err => console.log(err))  // Cambiar al nuevo
 })
