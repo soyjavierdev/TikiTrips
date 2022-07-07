@@ -42,9 +42,13 @@ router.get('/users/:id', isLoggedIn, (req, res, next) => {
         .then(user => {
             const allRoles = rolesChecker(req.session.currentUser)
 
+            let isDriverProfile = false
             let selfUser = (id === req.session.currentUser._id && allRoles.isAdmin === false)
 
-            res.render('user/details-users', { user, allRoles, selfUser })
+            if (user.role === 'DRIVER') {
+                isDriverProfile = true
+            }
+            res.render('user/details-users', { user, allRoles, selfUser, isDriverProfile })
         })
         .catch(err => console.log(err))
 })
@@ -81,6 +85,26 @@ router.post('/users/:id/edit', isLoggedIn, isAuthorized, (req, res, next) => {
 
 
 //Individual Rating
+
+router.get('/users/:id/rating', (req, res, next) => {
+
+    const { id } = req.params
+
+    Rating
+        .findById(id)
+        .then(() => User.findById(id).populate('ratingArr'))
+        .then(driver => {
+            let avgRating = 0
+            let elementSum = 0
+            driver.ratingArr.forEach(element => {
+                elementSum = elementSum + element.score
+                avgRating = (elementSum / driver.ratingArr.length).toFixed(2)
+            })
+
+            res.render('user/ratings', { driver, avgRating })
+        })
+        .catch(err => console.log(err))
+})
 
 
 router.post('/users/:id/rating', (req, res, next) => {

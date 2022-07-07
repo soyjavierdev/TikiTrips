@@ -23,8 +23,9 @@
                         <input type="submit" value="Delete" class="btn btn-danger btn-sm">
                     </form>
                     {{/if}}
-                    <a href="/users/{{user.id}}/rating" class="btn btn-success">See ratings</a> {{!-- Doesnt work yet
-                    --}}
+                    {{#if isDriverProfile}}
+                    <a href="/users/{{user.id}}/rating" class="btn btn-success">See ratings</a>
+                    {{/if}}
                 </div>
             </div>
         </div>
