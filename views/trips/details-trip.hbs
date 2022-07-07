@@ -21,12 +21,14 @@
 
 
                     </p>
-                    <p class="card-text">Smoking allowed? {{trip.smokingAllowed}}</p>
+                    <p class="card-text">Can i smoke? {{trip.smokingAllowed}}</p>
+                    {{#if isTripAdminOwner}}
                     <a href="/trips/{{trip.id}}/edit" class="btn btn-warning">Edit</a>
                     <form action="/trips/{{trip.id}}/delete" method="POST" style="display: inline-block">
                         <input type="submit" value="Delete" class="btn btn-danger btn-sm">
-                        <a href="/trips" class="btn btn-primary">Back to the list</a>
                     </form>
+                    {{/if}}
+                    <a href="/trips" class="btn btn-primary">Back to the list</a>
                 </div>
             </div>
         </div>

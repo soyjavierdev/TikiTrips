@@ -3,7 +3,7 @@ const User = require("./../models/User.model")
 const Rating = require("./../models/Rating.model")
 const { isLoggedIn, isLoggedOut } = require('./../middleware/session-guard')
 const { checkRole } = require('./../middleware/roles-checker')
-const { isAuthorized } = require('./../middleware/admin-owner-checker')
+const { isAuthorized } = require('../middleware/admin-currentuser-checker')
 const { rolesChecker } = require("./../utils/roles-checker")
 
 
@@ -101,8 +101,7 @@ router.post('/users/:id/rating', (req, res, next) => {
             let elementSum = 0
             driver.ratingArr.forEach(element => {
                 elementSum = elementSum + element.score
-                avgRating = elementSum / driver.ratingArr.length
-                return avgRating
+                avgRating = (elementSum / driver.ratingArr.length).toFixed(2)
             })
 
             res.render('user/ratings', { driver, avgRating })

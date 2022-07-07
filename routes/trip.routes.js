@@ -52,12 +52,14 @@ router.get('/trips/:id', isLoggedIn, (req, res, next) => {
         .populate('passengers owner')
         .then(trip => {
             let isTripPassenger = false
+            let isTripAdminOwner = false
+
             trip.passengers.forEach(element => {
-                if (element._id.toString() === req.session.currentUser._id) {
-                    isTripPassenger = true
-                }
+                if (element._id.toString() === req.session.currentUser._id) isTripPassenger = true
             })
-            res.render('trips/details-trip', { trip, isTripPassenger })
+            if (trip.owner._id.toString() === req.session.currentUser._id || req.session.currentUser.role === 'ADMIN') isTripAdminOwner = true
+
+            res.render('trips/details-trip', { trip, isTripPassenger, isTripAdminOwner })
         })
         .catch(err => console.log(err))
 })
@@ -72,7 +74,13 @@ router.get('/trips/:id/edit', isLoggedIn, (req, res, next) => {
 
         .findById(id)
         .then(trips => {
-            res.render('trips/edit-trip', { trips })
+
+            console.log(req.session.currentUser.role)
+            if (trips.owner._id.toString() === req.session.currentUser._id || req.session.currentUser.role === 'ADMIN') {
+                res.render('trips/edit-trip', { trips })
+            } else {
+                res.redirect('/')
+            }
         })
         .catch(err => console.log(err))
 })

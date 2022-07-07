@@ -3,10 +3,15 @@
 
     <img src="{{driver.profilePic}}" alt="{{driver.username}} profile picture">
 
-    <h3>Average rating: {{avgRating}}/ 5</h3>
+    <h3>Average rating: {{avgRating}}/ 5.00</h3>
 
     {{#each driver.ratingArr}}
-    <p>Rating: {{score}}</p>
-    <p>Review: {{comment}}</p>
+    <div class="card mb-2" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{judge.username}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Rating: {{score}} / 5</h6>
+            <p class="card-text">Review: {{comment}}</p>
+        </div>
+    </div>
     {{/each}}
 </div>
