@@ -10,12 +10,14 @@
 
             <form action="/trips/create" method="POST">
 
-                <label for="origin" class="form-label">What is the origin of the trip?</label>
+                <label for="origin" class="form-label">Where will your trip start?</label>
                 <input type="text" class="form-control" id="origin" name="origin" aria-describedby="emailHelp">
+                <br>
 
-                <label for="destination" class="form-label">What is the destination of the trip?</label>
+                <label for="destination" class="form-label">Where are you going to?</label>
                 <input type="text" class="form-control" id="destination" name="destination"
                     aria-describedby="emailHelp">
+                <br>
 
                 <div class="mb-3">
                     <label for="date" class="form-label">
@@ -24,15 +26,18 @@
                     <div class="form-text">Required.</div>
                 </div>
 
-                <label for="description" class="form-label">Add a description of the trip</label>
+                <label for="description" class="form-label">Add a short description of your trip</label>
                 <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+                <div class="form-text">Required (min 20 characters).</div>
+                <br>
 
-                <label for="numberOfPassengers" class="form-label">How many seats are avalaibles in your car?</label>
+                <label for="numberOfPassengers" class="form-label">How many seats are available in your car?</label>
                 <input type="number" class="form-control" id="numberOfPassengers" name="numberOfPassengers"
                     aria-describedby="emailHelp">
+                <br>
 
                 <fieldset>
-                    <p id="userType">Can smoke the passengers in your car?</p>
+                    <p id="userType">Can the passengers smoke in your car?</p>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="smokingAllowed" value="true" // CUIDADO AQUÍ
                             id="smokingAllowed">

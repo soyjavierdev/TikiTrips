@@ -9,7 +9,7 @@ const app = express()
 require('./config/session.config')(app)
 require("./config")(app)
 
-const projectName = "blabla"
+const projectName = "tikitrips_"
 app.locals.appTitle = `${projectName}`
 
 const index = require("./routes/index.routes")

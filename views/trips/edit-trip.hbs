@@ -12,10 +12,12 @@
                 <label for="origin" class="form-label">What is the origin of the trip?</label>
                 <input type="text" class="form-control" value="{{origin.address}}" id="origin" name="origin"
                     aria-describedby="emailHelp">
+                <br>
 
                 <label for="destination" class="form-label">What is the destination of the trip?</label>
                 <input type="text" class="form-control" value="{{destination.address}}" id="destination"
                     name="destination" aria-describedby="emailHelp">
+                <br>
 
                 <div class="mb-3">
                     <label for="date" class="form-label">
@@ -23,25 +25,26 @@
                     <input type="date" class="form-control" id="date" name="date">
                     <div class="form-text">Required.</div>
                 </div>
-                <label for="description" class="form-label">Add a description of the trip</label> // añadir lo de extend
-                para que se más grande
+                <label for="description" class="form-label">Add a description of the trip</label>
                 <textarea class="form-control" id="description" rows="3" name="description">{{description}}</textarea>
+                <br>
 
-                <label for="numberOfPassengers" class="form-label">How many seats are avalaibles in your car?</label>
+                <label for="numberOfPassengers" class="form-label">How many seats are available in your car?</label>
                 <input type="number" class="form-control" id="numberOfPassengers" name="numberOfPassengers"
                     value="{{numberOfPassengers}}" aria-describedby="emailHelp">
+                <br>
 
                 <fieldset>
-                    <p id="userType">Can smoke the passengers in your car?</p>
+                    <p id="userType">Can the passengers smoke in your car?</p>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="smokingAllowed" value="true" // CUIDADO AQUÍ
+                        <input class="form-check-input" type="radio" name="smokingAllowed" value="true"
                             id="smokingAllowed">
                         <label class="form-check-label" for="flexCheckDefault">
                             Yes
                         </label>
                     </div>
                     <div class="form-check" class="form-label">
-                        <input class="form-check-input" name="smokingAllowed" type="radio" value="false" // CUIDADO AQUÍ
+                        <input class="form-check-input" name="smokingAllowed" type="radio" value="false"
                             id="smokingAllowed">
                         <label class="form-check-label" for="flexCheckChecked">
                             No
