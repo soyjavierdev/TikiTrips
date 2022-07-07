@@ -7,7 +7,7 @@
             <h1>Sign Up!</h1>
             <hr>
 
-            <form action="/users/signup" method="POST">
+            <form action="/users/signup" method="POST" enctype="multipart/form-data">
 
                 <div class="mb-3 row">
                     <div class="col">
@@ -34,9 +34,9 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="profilePic" class="form-label">Add a profile picture</label>
-                    <input type="url" class="form-control" id="profilePic" name="profilePic">
-                    <div class="form-text">Enter the URL to the profile image you want (optional).</div>
+                    <label for="formFile" class="form-label">Add a profile picture</label>
+                    <input type="file" class="form-control" id="formFile" name="img">
+                    <div class="form-text">Insert a profile picture (optional).</div>
                 </div>
 
                 <div class="mb-3">
@@ -78,5 +78,4 @@
             </form>
         </div>
     </div>
-
 </div>

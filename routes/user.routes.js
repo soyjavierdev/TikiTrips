@@ -6,7 +6,6 @@ const { checkRole } = require('./../middleware/roles-checker')
 const { isAuthorized } = require('../middleware/admin-currentuser-checker')
 const { rolesChecker } = require("./../utils/roles-checker")
 
-
 // Users list
 router.get('/users', isLoggedIn, (req, res, next) => {
 
