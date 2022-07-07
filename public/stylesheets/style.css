@@ -14,6 +14,9 @@ h1 {
 
 #allNavBar {
   background-color: #e19191;
+  /* position: fixed;
+  z-index: 1;
+  width: 100%; */
 }
 
 /* Nav Style */
@@ -154,7 +157,11 @@ footer {
 }
 
 
-/* Card */
+/* Card user details */
+
+#commentCard {
+  /* height: 20px; */
+}
 
 /* From uiverse.io by @gagan-gv */
 
