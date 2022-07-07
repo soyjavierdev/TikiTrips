@@ -1,3 +1,20 @@
 <div class="container">
-    <h1>Welcome {{user.username}}!!</h1>
+    <h2 class="page-title">Welcome {{user.username}}!</h2>
+    <div class="row">
+        <div class="col-12 mb-5 mt-5">
+            <div class="card mx-auto" style="width: 36rem; height: 52rem">
+                <img src="{{user.profilePic}}" class="card-img-top" alt="{{user.username}} profile picture">
+                <div class="card-body">
+                    <h5 class="card-title">{{user.username}}</h5>
+                    <br>
+                    <h6 class="card-subtitle mb-2 text-muted">{{user.bio}}</h6>
+                    <br>
+                    <p class="card-text">Email: {{user.email}}</p>
+                    <p class="card-text">Phone number: {{user.phoneNumber}}</p>
+                    <p class="card-text">Type of user: {{user.role}}</p>
+                    <a href="/users" class="btn btn-primary">Go back</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

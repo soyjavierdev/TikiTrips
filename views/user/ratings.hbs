@@ -1,12 +1,14 @@
 <div class="container">
-    <h1>Ratings for {{driver.username}}</h1>
-
-    <img src="{{driver.profilePic}}" alt="{{driver.username}} profile picture">
-
-    <h3>Average rating: {{avgRating}}/ 5.00</h3>
+    <div class="card mb-5 mt-3 mx-auto" style="width: 32rem; height: 38rem">
+        <img src="{{driver.profilePic}}" class="card-img-top" alt="{{driver.username}} profile picture">
+        <div class="card-body">
+            <h5 class="card-title">Ratings for {{driver.username}}</h5>
+            <p class="card-text">Average rating: {{avgRating}} / 5.00</p>
+        </div>
+    </div>
 
     {{#each driver.ratingArr}}
-    <div class="card mb-2" style="width: 18rem;">
+    <div class="card mb-2 mx-auto" id="commentCard" style="width: 32rem; height: 6rem">
         <div class="card-body">
             <h5 class="card-title">{{judge.username}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Rating: {{score}} / 5</h6>
