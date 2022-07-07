@@ -1,9 +1,9 @@
 <div class="container">
     <h2 class="page-title">Our travels</h2>
     <div class="row">
-
         {{#each trips}}
 
+        {{#if owner}}
         <div class="col-xl-3 col-lg-4 col-md-5 mb-5 mt-5">
             <div class="card" style="width: 18rem;">
                 <img href="/users/{{id}}" src="{{profilePic}}" class="card-img-top" alt="{{username}} profile picture">
@@ -16,6 +16,36 @@
                 </div>
             </div>
         </div>
+        {{/if}}
+        {{/each}}
+        {{#if errorMessage}}
+        <div id="errorMessage">
+            <p>{{errorMessage}}</p>
+            <a href="/trips" class="btn btn-primary">Go back</a>
+        </div>
+        {{/if}}
+    </div>
+</div>
+<!-- <div class="container">
+    <h2 class="page-title">Our travels</h2>
+    <div class="row">
+
+        {{#each trips}}
+
+        <div class="col-xl-3 col-lg-4 col-md-5 mb-5 mt-5">
+            <div class="card" style="width: 18rem;">
+                <a href="/users/{{id}}"><img id="logo-maps" src="./../../images/map-marker.png"
+                        alt="{{username}} profile picture"> </a>
+                <div class="card-body">
+                    <h5 class="card-title" id="card-trip">From: {{origin.address}}</h5>
+                    <h5 class="card-title" id="card-trip">To: {{destination.address}}</h5>
+                    <p class="card-text" id="card-trip">Avalaible seats: {{numberOfPassengers}}</p>
+                    <a href="/trips/{{id}}" class="btn btn-primary">View trip</a>
+                    <a href="/trips/{{id}}/join" id=joinBtn class="btn btn-success">Join trip</a>
+                </div>
+            </div>
+        </div>
+
 
         {{/each}}
 
@@ -26,4 +56,4 @@
         </div>
         {{/if}}
     </div>
-</div>
+</div> -->

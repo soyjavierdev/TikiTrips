@@ -36,8 +36,12 @@ router.get('/trips', isLoggedIn, (req, res, next) => {
 
     Trip
         .find()
-        .select({ origin: 1, destination: 1, numberOfPassengers: 1 }) // Map image
-        .then(trips => res.render('trips/trip-list', { trips }))
+        .populate('owner')
+        .select({ origin: 1, destination: 1, numberOfPassengers: 1, owner: 1 }) // Map image
+        .then(trips => {
+            console.log(trips)
+            res.render('trips/trip-list', { trips })
+        })
         .catch(err => console.log(err))
 })
 
@@ -51,12 +55,15 @@ router.get('/trips/:id', isLoggedIn, (req, res, next) => {
         .findById(id)
         .populate('passengers owner')
         .then(trip => {
+            console.log('-----------------------------', trip)
             let isTripPassenger = false
             let isTripAdminOwner = false
 
             trip.passengers.forEach(element => {
-                if (element._id.toString() === req.session.currentUser._id) isTripPassenger = true
+                console.log(element)
+                if (element._id.toString() === req.session.currentUser._id) { isTripPassenger = true }
             })
+
             if (trip.owner._id.toString() === req.session.currentUser._id || req.session.currentUser.role === 'ADMIN') isTripAdminOwner = true
 
             res.render('trips/details-trip', { trip, isTripPassenger, isTripAdminOwner })
