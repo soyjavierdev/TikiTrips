@@ -1,3 +1,12 @@
-<h1>
-    Thanks for rating {{id}}!!
-</h1>
+<div class="container">
+    <h1>Ratings for {{driver.username}}</h1>
+
+    <img src="{{driver.profilePic}}" alt="{{driver.username}} profile picture">
+
+    <h3>Average rating: {{avgRating}}/ 5</h3>
+
+    {{#each driver.ratingArr}}
+    <p>Rating: {{score}}</p>
+    <p>Review: {{comment}}</p>
+    {{/each}}
+</div>

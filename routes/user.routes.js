@@ -86,22 +86,28 @@ router.post('/users/:id/edit', isLoggedIn, isAuthorized, (req, res, next) => {
 router.post('/users/:id/rating', (req, res, next) => {
 
 
-    const { score } = req.body
+    const { score, comment } = req.body
     const { id } = req.params
     const { currentUser } = req.session
 
-    const editRating = { judge: currentUser._id, score }
+    const editRating = { judge: currentUser._id, score, comment }
 
     Rating
         .create(editRating)
-        .then(rating => {
-            console.log(id)
-            User.findByIdAndUpdate(id, { $push: { ratingArr: rating } }) // Preguntar a Clara
-        })
-        .then(() => res.render('user/ratings', { id, currentUser, editRating }))
-        .catch(err => console.log(err))
-    console.log(id)
+        .then(rating => User.findByIdAndUpdate(id, { $push: { ratingArr: rating._id } }))
+        .then(() => User.findById(id).populate('ratingArr'))
+        .then(driver => {
+            let avgRating = 0
+            let elementSum = 0
+            driver.ratingArr.forEach(element => {
+                elementSum = elementSum + element.score
+                avgRating = elementSum / driver.ratingArr.length
+                return avgRating
+            })
 
+            res.render('user/ratings', { driver, avgRating })
+        })
+        .catch(err => console.log(err))
 })
 
 //Delete user
