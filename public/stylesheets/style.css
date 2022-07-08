@@ -19,6 +19,17 @@ h1 {
   width: 100%; */
 }
 
+/* Error message trip full */
+
+#errorMessageFull {
+  background-image: url("./../images/dont-pass.png");
+  background-size: 30%;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;
+  height: 500px;
+}
+
 /* Nav Style */
 
 #navbarSupportedContent {
