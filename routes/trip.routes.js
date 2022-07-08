@@ -39,7 +39,7 @@ router.get('/trips', isLoggedIn, (req, res, next) => {
         .populate('owner')
         .select({ origin: 1, destination: 1, numberOfPassengers: 1, owner: 1 }) // Map image
         .then(trips => {
-            console.log(trips)
+            console.log('Helloooooooo', trips)
             res.render('trips/trip-list', { trips })
         })
         .catch(err => console.log(err))
@@ -55,7 +55,6 @@ router.get('/trips/:id', isLoggedIn, (req, res, next) => {
         .findById(id)
         .populate('passengers owner')
         .then(trip => {
-            console.log('-----------------------------', trip)
             let isTripPassenger = false
             let isTripAdminOwner = false
 
