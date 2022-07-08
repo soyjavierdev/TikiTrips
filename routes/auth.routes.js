@@ -14,12 +14,14 @@ router.get('/signup', (req, res, next) => {
 router.post('/signup', uploaderConfig.single('img'), (req, res, next) => {
 
     const { userPwd } = req.body
+
     let image
     if (req.file) {
-        image = { profilePic: req.file.path }
+        image = req.file.path
     } else {
         image = "https://toppng.com/uploads/preview/instagram-default-profile-picture-11562973083brycehrmyv.png"
     }
+
 
     bcrypt
         .genSalt(saltRounds)
