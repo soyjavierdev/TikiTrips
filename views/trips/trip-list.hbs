@@ -19,6 +19,7 @@
           </div> -->
         <div class="col-xl-3 col-lg-4 col-md-5 mb-5 mt-5">
             <div class="cardTwo">
+
                 <div class="card-imageTwo"><a href="/trips/{{id}}"><img src="./../../images/blablacar-wallpaper.jpg"
                             class="card-img-top" alt="{{username}} profile picture"></a> </div>
                 <div class="category">Avalaible seats: {{numberOfPassengers}} </div>
@@ -38,8 +39,8 @@
         {{/each}}
         {{#if errorMessage}}
         <div id="errorMessageFull">
-            <p>{{errorMessage}}</p>
-            <a href="/trips" class="btn btn-primary">Go back</a>
+            <p id="errorMessageFullText">{{errorMessage}}</p>
+            <a href="/trips" class="c-button">Go back</a>
         </div>
         {{/if}}
     </div>

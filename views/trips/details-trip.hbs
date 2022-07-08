@@ -42,9 +42,9 @@
             imagen --}}
 
             {{#if isTripAdminOwner}}
-            <a href="/trips/{{trip.id}}/edit" class="btn btn-warning">Edit</a>
+            <a href="/trips/{{trip.id}}/edit" class="d-button">Edit</a>
             <form action="/trips/{{trip.id}}/delete" method="POST" style="display: inline-block">
-                <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                <input type="submit" value="Delete" class="e-button">
             </form>
             {{/if}}
 
@@ -53,7 +53,7 @@
 </div>
 
 {{#if isTripPassenger}}
-<div class="col-9 mb-5 mt-5">
+<!-- <div class="col-9 mb-5 mt-5">
 
     <div class="card" id="rating-form">
 
@@ -80,6 +80,28 @@
 
         </form>
     </div>
+</div>  -->
+
+
+
+<div class="containerr">
+    <div class="left">
+        <div class="header">
+            <h2 class="animation a1">Rate {{trip.owner.username}}</h2>
+            <h4 class="animation a2">Score (from 1 to 5):</h4>
+        </div>
+        <form class="form" action=" /users/{{trip.owner._id}}/rating" method="POST">
+            <label for="score" class="form-label"></label>
+            <input type="number" class="form-field animation a3" id="score" placeholder="Score" name="score">
+
+            <label for="comment" class="form-label">Review (max. 300 characters)</label>
+            <input type="text" class="form-field animation a4" placeholder="Review" id="comment" name="comment">
+
+
+            <button class="animation a6">Submit</button>
+        </form>
+    </div>
+    <div class="right"></div>
 </div>
 
 

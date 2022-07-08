@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
 
     <div class="row justify-content-center">
 
@@ -78,4 +78,68 @@
             </form>
         </div>
     </div>
+</div>  -->
+
+
+
+
+<div class="login-container">
+    <form action="/users/signup" method="POST" class="form-login">
+        <ul class="login-nav">
+
+            <li class="login-nav__item">
+                <a>Sign up!</a>
+            </li>
+        </ul>
+        <label for="login-input-user" class="login__label">
+            Email address
+        </label>
+        <input id="login-input-user" class="login__input" type="text" name="email" />
+        <label for="login-input-user" class="login__label">
+            Password
+        </label>
+        <input id="login-input-user" class="login__input" type="password" name="userPwd" />
+        <label for="login-input-user" class="login__label">
+            Username
+        </label>
+        <input id="login-input-user" class="login__input" type="text" name="username" />
+        <label for="login-input-user" class="login__label">
+            Bio.
+        </label>
+        <input id="login-input-user" class="login__input" type="text" name="bio" />
+        <label for="login-input-password" class="login__label">
+            Profile picture
+        </label>
+        <input class="login__input" id="formFile" name="img" type="file" />
+        <label for="login-input-user" class="login__label">
+            Phone number
+        </label>
+        <input id="login-input-user" class="login__input" type="text" name="phoneNumber" />
+        <label for="login-input-user" class="login__label">
+            Birth date
+        </label>
+        <input id="login-input-user" class="login__input" type="date" name="birth" />
+        <label for="login-input-password" class="login__label">
+            How will you be using tikitrips_?
+        </label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="role" value="PASSENGER" // CUIDADO AQUÍ
+                id="smokingAllowed">
+            <label class="form-check-label" for="flexCheckDefault">
+                Passenger
+            </label>
+        </div>
+        <div class="form-check" class="form-label">
+            <input class="form-check-input" name="role" type="radio" value="DRIVER" // CUIDADO AQUÍ id="smokingAllowed">
+            <label class="form-check-label" for="flexCheckChecked">
+                Driver
+            </label>
+
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="login__submit">Create</button>
+            </div>
+
+    </form>
+
 </div>

@@ -19,7 +19,9 @@ h1 {
   width: 100%; */
 }
 
-/* Error message trip full */
+/*---------Errors messages  ---------------*/
+
+/* Error message trip full image */
 
 #errorMessageFull {
   background-image: url("./../images/dont-pass.png");
@@ -28,6 +30,21 @@ h1 {
   background-position: center;
   margin: 0 auto;
   height: 500px;
+}
+
+/* Error message trip full text */
+
+#errorMessageFullText {
+  text-align: center;
+  font-size: 22px;
+}
+
+/*Error message not login */
+
+#errorMessageUsersP {
+
+  text-align: center;
+  font-size: 22px;
 }
 
 /* Nav Style */
@@ -89,7 +106,6 @@ h1 {
 /* Info about App Style */
 
 #info-app {
-  height: 300px;
   background-color: white;
   display: flex;
   flex-wrap: wrap;
@@ -319,6 +335,76 @@ button:active {
   transition: background-position-y ease-in-out 250ms;
 }
 
+/* Button in view you can´t pass */
+
+.c-button {
+  display: block;
+  position: relative;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 8px 3px;
+  width: 20%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 35%;
+  border: none;
+  clip-path: polygon(7% 0, 93% 0, 100% 50%, 93% 100%, 7% 100%, 0 50%);
+  background-color: #000000;
+  background-image: radial-gradient(200% 70% at center 20%, rgb(3, 39, 197) -30%, rgb(15, 170, 217) 49%, rgb(17, 110, 216) 50%, rgb(65, 199, 194) 150%);
+  background-repeat: no-repeat;
+  transition: background-position-y ease-in-out 250ms;
+}
+
+/* Buttons in view you not are loged */
+/* log in button */
+
+.d-button {
+  display: block;
+  position: relative;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 8px 3px;
+  width: 20%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 5%;
+  border: none;
+  clip-path: polygon(7% 0, 93% 0, 100% 50%, 93% 100%, 7% 100%, 0 50%);
+  background-color: #000000;
+  background-image: radial-gradient(200% 70% at center 20%, rgb(3, 39, 197) -30%, rgb(15, 170, 217) 49%, rgb(17, 110, 216) 50%, rgb(65, 199, 194) 150%);
+  background-repeat: no-repeat;
+  transition: background-position-y ease-in-out 250ms;
+}
+
+/* sign up button */
+
+.e-button {
+  display: block;
+  position: relative;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 8px 3px;
+  width: 20%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 2%;
+  border: none;
+  clip-path: polygon(7% 0, 93% 0, 100% 50%, 93% 100%, 7% 100%, 0 50%);
+  background-color: #000000;
+  background-image: radial-gradient(200% 70% at center 20%, rgb(22, 180, 37) -30%, rgb(124, 196, 111) 49%, rgb(13, 139, 32) 50%, rgb(66, 171, 67) 150%);
+  background-repeat: no-repeat;
+  transition: background-position-y ease-in-out 250ms;
+}
+
 /* Form Rating */
 
 #rating-form {
@@ -503,4 +589,159 @@ button:active {
 
 .login__forgot:hover {
   color: rgb(17, 97, 237);
+}
+
+
+/* Form rating */
+
+  {
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,500&display=swap');
+
+
+body {
+  font-family: 'Rubik', sans-serif;
+}
+
+.containerr {
+  margin-top: 100px;
+  display: flex;
+  height: 100vh;
+}
+
+.left {
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  animation-name: left;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: 1s;
+}
+
+.right {
+  flex: 1;
+  background-color: black;
+  transition: 1s;
+  background-image: url("./../images/rating.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+
+.header>h2 {
+  margin: 0;
+  color: #4f46a5;
+}
+
+.header>h4 {
+  margin-top: 10px;
+  font-weight: normal;
+  font-size: 15px;
+  color: rgba(0, 0, 0, .4);
+}
+
+.form {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form>p {
+  text-align: right;
+}
+
+.form>p>a {
+  color: #000;
+  font-size: 14px;
+}
+
+.form-field {
+  height: 46px;
+  padding: 0 16px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Rubik', sans-serif;
+  outline: 0;
+  transition: .2s;
+  margin-top: 20px;
+}
+
+.form-field:focus {
+  border-color: #0f7ef1;
+}
+
+.form>button {
+  padding: 12px 10px;
+  border: 0;
+  background: linear-gradient(to right, #de48b5 0%, #0097ff 100%);
+  border-radius: 3px;
+  margin-top: 10px;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: 'Rubik', sans-serif;
+}
+
+.animation {
+  animation-name: move;
+  animation-duration: .4s;
+  animation-fill-mode: both;
+  animation-delay: 2s;
+}
+
+.a1 {
+  animation-delay: 2s;
+}
+
+.a2 {
+  animation-delay: 2.1s;
+}
+
+.a3 {
+  animation-delay: 2.2s;
+}
+
+.a4 {
+  animation-delay: 2.3s;
+}
+
+.a5 {
+  animation-delay: 2.4s;
+}
+
+.a6 {
+  animation-delay: 2.5s;
+}
+
+@keyframes move {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+@keyframes left {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+
+  100% {
+    opacity: 1;
+    padding: 20px 40px;
+    width: 440px;
+  }
 }
