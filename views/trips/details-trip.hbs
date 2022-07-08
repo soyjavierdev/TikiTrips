@@ -1,9 +1,31 @@
 <div class="container">
-    <h2 class="page-title">Details for {{trip.destination.address}}</h2>
+    <h2 class="page-title">Details for your trip to {{trip.destination.address}}</h2>
 
     <div id="myMap"></div>
     <div class="row">
-        <div class="col-3 mb-5 mt-5">
+
+        <div class="row">
+            <div class="col-12 mb-5 mt-5">
+                <div class="card mx-auto" style="width: 36rem; height: 57rem">
+                    <a href="/users/{{trip.owner._id}}" class="btn btn-primary"><img src="{{trip.owner.profilePic}}"
+                            class="card-img-top" class="card-img-top" alt="{{trip.username}} profile picture"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{trip.owner.username}} is your driver!</h5>
+                        <br>
+                        <h6 class="card-subtitle mb-2 text-muted">{{user.bio}}</h6>
+                        <br>
+                        <p class="card-text">From: {{trip.origin.address}} to {{trip.destination.address}} </p>
+                        <p class="card-text">Date of the trip: {{trip.date}}</p>
+                        <p class="card-text">Avalaible seats: {{trip.numberOfPassengers}}</p>
+                        <p class="card-text">Smoking allowed? {{trip.smokingAllowed}}</p>
+                        <p class="card-text">Description of the trip: {{trip.description}}</p>
+                        <div class="author"> <span class="name"><a class="a-button" href="/trips"> Go Back
+                                </a> </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-3 mb-5 mt-5">
 
             <div class="card" style="width: 18rem;">
                 <a href="/users/{{trip.owner._id}}" class="btn btn-primary"><img src="{{trip.owner.profilePic}}"
@@ -14,55 +36,55 @@
                     <h5 class="card-title">From: {{trip.origin.address}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Details: {{trip.description}} {{trip._id}}</h6>
                     <p class="card-text">Date of the trip: {{trip.date}}</p>
-                    <p class="card-text">Avalaible seats: {{trip.numberOfPassengers}}
+                    <p class="card-text">Avalaible seats: {{trip.numberOfPassengers}} -->
 
-                        {{!-- {{#if trip.numberOfPassengers}}
-                        imagen --}}
+            {{!-- {{#if trip.numberOfPassengers}}
+            imagen --}}
 
+            {{#if isTripAdminOwner}}
+            <a href="/trips/{{trip.id}}/edit" class="btn btn-warning">Edit</a>
+            <form action="/trips/{{trip.id}}/delete" method="POST" style="display: inline-block">
+                <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+            </form>
+            {{/if}}
 
-                    </p>
-                    <p class="card-text">Smoking allowed? {{trip.smokingAllowed}}</p>
-                    {{#if isTripAdminOwner}}
-                    <a href="/trips/{{trip.id}}/edit" class="btn btn-warning">Edit</a>
-                    <form action="/trips/{{trip.id}}/delete" method="POST" style="display: inline-block">
-                        <input type="submit" value="Delete" class="btn btn-danger btn-sm">
-                    </form>
-                    {{/if}}
-                    <a href="/trips" class="btn btn-primary">Back to the list</a>
-                </div>
-            </div>
         </div>
-
-        {{#if isTripPassenger}}
-        <div class="col-9 mb-5 mt-5">
-
-            <div class="card" style="width: 18rem;">
-
-                <h1>Rate {{trip.owner.username}}</h1>
-
-                <form action="/users/{{trip.owner._id}}/rating" method="POST">
-
-                    <div class="mb-3 row">
-                        <div class="col">
-                            <label for="score" class="form-label">Score (from 1 to 5):</label>
-                            <input type="number" class="form-control" id="score" name="score">
-                            <div class="form-text">Required</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="comment" class="form-label">Review (max. 300 characters)</label>
-                            <input type="text" class="form-control" id="comment" name="comment">
-                        </div>
-
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-dark block">Submit</button>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-        {{/if}}
     </div>
+</div>
+
+{{#if isTripPassenger}}
+<div class="col-9 mb-5 mt-5">
+
+    <div class="card" id="rating-form">
+
+        <h1>Rate {{trip.owner.username}}</h1>
+
+        <form action=" /users/{{trip.owner._id}}/rating" method="POST">
+
+            <div class="mb-3 row">
+                <div class="col">
+                    <label for="score" class="form-label">Score (from 1 to 5):</label>
+                    <input type="number" class="form-control" id="score" name="score">
+                    <div class="form-text">Required</div>
+                </div>
+                <div class="mb-3">
+                    <label for="comment" class="form-label">Review (max. 300 characters)</label>
+                    <input type="text" class="form-control" id="comment" name="comment">
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="a-button">Submit</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+{{/if}}
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

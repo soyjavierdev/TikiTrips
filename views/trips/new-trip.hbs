@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
 
     <div class="row justify-content-center">
 
@@ -56,9 +56,66 @@
 
 
 
-                <input type="submit" value="Create your trip">
+                <input type="submit" class="b-button" value="Create your trip">
 
             </form>
         </div>
     </div>
+</div> -->
+
+
+
+
+<div class="login-container">
+    <form action="/trips/create" method="POST" class="form-login">
+        <ul class="login-nav">
+
+            <li class="login-nav__item">
+                <a>Create new trip!</a>
+            </li>
+        </ul>
+        <label for="login-input-user" class="login__label">
+            Where will your trip start?
+        </label>
+        <input id="login-input-user" class="login__input" type="text" name="origin" />
+        <label for="login-input-user" class="login__label">
+            Where are you going to?
+        </label>
+        <input id="login-input-user" class="login__input" type="text" name="destination" />
+        <label for="login-input-user" class="login__label">
+            Select the day of your trip
+        </label>
+        <input id="login-input-user" class="login__input" type="date" name="date" />
+        <label for="login-input-user" class="login__label">
+            Add a short description of your trip (min 20 characters).
+        </label>
+        <input id="login-input-user" class="login__input" type="text" name="description" />
+        <label for="login-input-password" class="login__label">
+            How many seats are available in your car?
+        </label>
+        <input id="login-input-password" class="login__input" name="numberOfPassengers" type="number" />
+        <label for="login-input-password" class="login__label">
+            Can the passengers smoke in your car?
+        </label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="smokingAllowed" value="true" // CUIDADO AQUÍ
+                id="smokingAllowed">
+            <label class="form-check-label" for="flexCheckDefault">
+                Yes
+            </label>
+        </div>
+        <div class="form-check" class="form-label">
+            <input class="form-check-input" name="smokingAllowed" type="radio" value="false" // CUIDADO AQUÍ
+                id="smokingAllowed">
+            <label class="form-check-label" for="flexCheckChecked">
+                No
+            </label>
+
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="login__submit">Create</button>
+            </div>
+
+    </form>
+
 </div>

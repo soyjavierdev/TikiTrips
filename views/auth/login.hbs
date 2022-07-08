@@ -1,4 +1,4 @@
-<div class="container">
+<!--  <div class="container">
 
     <div class="row justify-content-center">
 
@@ -31,5 +31,37 @@
             </form>
         </div>
     </div>
+
+</div> -->
+
+
+<div class="login-container">
+    <form action="/users/login" method="POST" class="form-login">
+        <ul class="login-nav">
+
+            <li class="login-nav__item">
+                <a>Log In</a>
+            </li>
+        </ul>
+        <label for="login-input-user" class="login__label">
+            Email Address
+        </label>
+        <input id="login-input-user" class="login__input" type="text" name="email" />
+        <label for="login-input-password" class="login__label">
+            Password
+        </label>
+        <input id="login-input-password" class="login__input" name="userPwd" type="password" />
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="login__submit">Log in</button>
+        </div>
+
+        {{#if errorMessage}}
+        <div id="errorMessage">
+            <p>{{errorMessage}}</p>
+        </div>
+        {{/if}}
+
+    </form>
 
 </div>
