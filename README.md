@@ -1,3 +1,7 @@
+Project URL: https://tikitrips.herokuapp.com/
+
+
+
 These endpoints are available to everyone, no need to log in, except for the bottom three that re only available to owner & admin
                  
 | Route              | HTTP Verb     | Description                |
